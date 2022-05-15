@@ -1,0 +1,33 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修改密码</title>
+</head>
+<body>
+
+    <div id="formContainer" class="dwo">
+        <div class="formLeft">
+        </div>
+        <div class="formRight">
+            <!-- Forgot password form -->
+            <form id="forgot" class="otherForm">
+                 {% csrf_token %}
+                <header>
+                    <h1>忘记密码</h1>
+                    <p>输入邮箱找回密码</p>
+                </header>
+                <section>
+                    <label>
+                        <p>邮箱</p>
+                        <input type="email" placeholder=" ">
+                        <div class="border"></div>
+                    </label>
+                    <button type="submit">发送邮件</button>
+                </section>
+                <footer>
+                    <button type="button" class="forgotBtn">返回</button>
+                     <p style="color: #ff0000;text-align: center">{{ error_name }}</p>
+                </footer>
+            </form>
+</body>
+</html>

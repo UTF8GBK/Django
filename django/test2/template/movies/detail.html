@@ -1,0 +1,32 @@
+{% extends 'movies/base.html' %}
+
+{% block title %}详情页{% endblock title %}
+
+{% block script %}
+    <script>
+    var res = new XMLHttpRequest();    //定义服务器交互对象
+    res.open('GET','http://127.0.0.1:8000/static/1.mp4',true);  //配置请求方式 ,视频的url ,是否同步
+    res.responseType = 'blob';  // 请求的类型
+    res.onload = function (e) {
+        if (this.status==200){   //请求成功
+            var blob = this.response;  //获取blob
+            $("#v").attr("src",URL.createObjectURL(blob));  //把blob创建添加到容器
+        }
+    };
+    res.send();  // 传输
+    </script>
+
+{%endblock script%}
+{% block body %}
+    <h1>{{ molist.title }}</h1>
+    <video id="v" controls="controls" autoplay muted></video>
+    <ul>
+        {% for heros in heroslist %}
+            <li>导演 ： {{ heros.attrs }}</li>
+            <li>上映时间 ： {{ heros.startdata }}</li>
+            <li>电影简介：{{ heros.info }}</li>
+        {% endfor %}
+
+    </ul>
+
+{%  endblock body %}

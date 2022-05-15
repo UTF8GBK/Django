@@ -1,0 +1,89 @@
+{% extends 'movies/base.html' %}
+
+{% block title %}主页 {% endblock title %}
+{% block script %}{% endblock script %}
+
+{% block body  %}
+    <div style="margin: 0 auto;width: 1350px">
+        <div class="jumbotron">
+         <div class="container">
+         <h1>Hello, world!</h1>
+          <p>电影评价</p>
+          <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+         </div>
+    </div>
+
+        <style>
+            img {
+                cursor: pointer;
+                transition: all 0.3s;
+            }
+            img:hover{
+                transform: scale(1.1);
+            }
+
+        </style>
+
+    {% for movies in page.object_list %}
+       <div class="row" style="float: left;margin-left: 25px">
+          <div class="col-sm-6 col-md-4" style="width: 320px;height: 600px">
+            <div class="thumbnail">
+                <a href="/{{ movies.id }}/"><img src="{{ movies.image_path }}" alt="..."></a>
+              <div class="caption">
+                  <h3><a href="/{{ movies.id }}/">{{ movies.title }}</a></h3>
+                <p>
+                    <span class="glyphicon glyphicon-eye-open">{{ movies.number }}</span>&nbsp;&nbsp;
+                    <span class="glyphicon glyphicon-thumbs-up">{{ movies.score }}</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+    {% endfor %}
+
+    <nav aria-label="Page navigation" style="clear: both;margin-left: 580px">
+  <ul class="pagination">
+      <li>
+          {% if page.has_previous %}
+              <a href="?page={{ page.previous_page_number }}" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+          {% else %}
+              <span aria-hidden="true">&laquo;</span>
+          {% endif %}
+      </a>
+    </li>
+
+      {% for i in page_range %}
+{#         判断激活状态 ##}
+          {% if page.number == i %}
+                <li class="active"><a href="?page={{ i }}">{{ i }}</a></li>
+          {% else %}
+              {% if i == '...' %}
+                   <li><span>...</span></li>
+              {% else %}
+                  <li><a href="?page={{ i }}">{{ i }}</a></li>
+              {% endif %}
+          {% endif %}
+      {% endfor %}
+
+
+      <li>
+          {% if page.has_next %}
+              <a href="?page={{ page.next_page_number }}" aria-label="Next">
+                 <span aria-hidden="true">&raquo;</span>
+          {% else %}
+              <span aria-hidden="true">&raquo;</span>
+          {% endif %}
+      </a>
+    </li>
+  </ul>
+</nav>
+
+
+    </div>
+
+
+{% endblock body %}
+
+
+

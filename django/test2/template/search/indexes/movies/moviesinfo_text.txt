@@ -1,0 +1,5 @@
+# 指定表中的哪些字段可以生成索引数据
+{{object.title}}
+
+
+# python manage.py rebuild_index  #建立索引数据

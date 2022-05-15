@@ -1,0 +1,34 @@
+{% extends 'movies/base.html' %}
+
+{% block title %}登录页面{% endblock title %}
+
+{% block body %}
+    <div style="margin: 180px auto;width: 580px">
+        <form action="/check_login/" method="post">
+            {% csrf_token %}
+             <div class="input-group input-group-lg">
+              <span class="input-group-addon" id="sizing-addon1">邮&nbsp;&nbsp;箱：</span>
+{#              <input name="username" type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon1">#}
+              <input name="email" type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon1">
+            </div>
+            <br>
+             <div class="input-group input-group-lg">
+              <span class="input-group-addon" id="sizing-addon2">密&nbsp;&nbsp;&nbsp;&nbsp;码：</span>
+              <input name="password" type="password" class="form-control" placeholder="password" aria-describedby="sizing-addon1">
+        </div>
+            <br>
+            <button type="submit"  class="btn btn-danger">登录</button>
+            <button type="reset"  class="btn btn-warning">重新输入</button>
+{#            <a href={% url 'login' %}> 忘记密码</a>#}
+            <a class="is-pulled-right is-size-7" href="{% url 'login' %}">忘记密码</a> </a>
+
+{#            <button type="reset"  class="btn btn-warning"><a href={% 'zhuce.html' %}>注册</a></button>#}
+{#            <a href={% zhuce %}>注册</a>#}
+        </form>
+
+        {{ res }}
+    </div>
+
+
+
+{% endblock body %}

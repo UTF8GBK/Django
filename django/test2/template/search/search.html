@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>搜索结果页面</title>
+</head>
+<body>
+    搜索的关键字：{{ query }}
+    <ul>
+        {% for item in page %}
+            <li>{{ item.object.title }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
